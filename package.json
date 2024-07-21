@@ -8,6 +8,7 @@
     "dist/"
   ],
   "scripts": {
+    "prepublish": "rm -rf dist && npm run build",
     "build": "tsc",
     "prisma:migrate": "dotenv -c -- prisma migrate deploy",
     "test": "dotenv -c -- jest --bail"
