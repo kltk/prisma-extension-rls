@@ -1,5 +1,13 @@
 import { Prisma } from '@prisma/client';
 
+const stringify = (v: unknown = null) => {
+  return v !== null
+    ? typeof v === 'object'
+      ? JSON.stringify(v)
+      : String(v)
+    : null;
+};
+
 export function createContext(configs: [string, string][]) {
   return Prisma.defineExtension((client) =>
     client.$extends({
@@ -23,9 +31,6 @@ export function createContext(configs: [string, string][]) {
     })
   );
 }
-
-const stringify = (v: unknown) =>
-  typeof v === 'object' ? JSON.stringify(v) : String(v);
 
 export const rlsExtension = Prisma.defineExtension((client) =>
   client.$extends({
