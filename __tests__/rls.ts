@@ -53,6 +53,12 @@ describe('rls extension', () => {
       .resolves.toEqual([]);
   });
 
+  test('denied with empty context', async () => {
+    const model = client.$rls([]).obj;
+    await expect(model.findMany()) //
+      .rejects.toThrow(/denied/);
+  });
+
   test('allow with custom context', async () => {
     const model = client.$rls(context).obj;
     await expect(model.findMany()) //

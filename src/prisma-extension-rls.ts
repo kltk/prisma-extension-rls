@@ -27,6 +27,10 @@ export function createContext(initial: ContextData) {
             };
 
             const merged = mergeContext(initial, context);
+            if (!merged.length) {
+              return query(rest);
+            }
+
             const sqlParts = merged.map(
               ([k, v]) => Prisma.sql`SET_CONFIG(${k}, ${stringify(v)}, TRUE)`
             );
