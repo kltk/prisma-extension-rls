@@ -1,6 +1,6 @@
 {
   "name": "prisma-extension-rls",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Support Row Level Security with Prisma",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
