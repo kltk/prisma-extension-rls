@@ -56,5 +56,14 @@ export const rlsExtension = Prisma.defineExtension((client) =>
         return client.$extends(createContext(input));
       },
     },
+    model: {
+      $allModels: {
+        $rls<T>(this: T, input: ContextData) {
+          const { name } = this as { name: Lowercase<Prisma.ModelName> };
+          const model = client.$extends(createContext(input))[name];
+          return model as unknown as Omit<T, '$rls'>;
+        },
+      },
+    },
   })
 );

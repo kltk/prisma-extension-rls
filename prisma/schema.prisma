@@ -14,7 +14,13 @@ datasource db {
 }
 
 model Obj {
-  id String @id @default(uuid()) @db.Uuid
-  uid String @db.Uuid @default(dbgenerated("(current_setting('request.jwt.claims', TRUE)::jsonb ->> 'sub')::uuid"))
+  id   String @id @default(uuid()) @db.Uuid
+  uid  String @default(dbgenerated("(current_setting('request.jwt.claims', TRUE)::jsonb ->> 'sub')::uuid")) @db.Uuid
   data Int
+}
+
+model Obj2 {
+  id   String @id @default(uuid()) @db.Uuid
+  uid  String @default(dbgenerated("(current_setting('request.jwt.claims', TRUE)::jsonb ->> 'sub')::uuid")) @db.Uuid
+  name String
 }
